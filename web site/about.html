@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIROJAV - About Magic</title>
+    <style>
+        @font-face {
+            font-family: '8bitoperator_jve';
+            src: url('assets/fonts/8bitoperator_jve.ttf'); 
+        }
+        @font-face {
+            font-family: 'Gilroy-Medium';
+            src: url('assets/fonts/Gilroy-Medium.otf'); 
+        }
+        @font-face {
+            font-family: 'Gilroy-Heavy';
+            src: url('assets/fonts/Gilroy-Heavy.ttf'); 
+        }
+        @font-face {
+            font-family: 'Gilroy-Bold';
+            src: url('assets/fonts/Gilroy-Bold.ttf'); 
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('assets/fon 2.png'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 70px;
+        }
+
+        .logo {
+            font-family: 'Gilroy-Heavy', sans-serif;   
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            padding-left: 20px;
+        }
+
+        nav {
+            display: flex;
+            gap: 70px;
+            margin-right: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            padding: 4px 40px;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            transition: 0.3s;
+            font-size: 14px;
+        }
+
+        /* Активная кнопка Gallery (Голубая) */
+        nav a.active { background: #56CCF2; }
+        nav a:hover { background: rgba(192, 28, 192, 0.5); }
+
+        .about-container {
+            display: flex;
+            flex: 1;
+            justify-content: center;
+            align-items: center;
+            padding: 0 70px;
+            gap: 50px;
+        }
+
+        .staff-desc {
+            flex: 1;
+            max-width: 350px;
+            transition: all 0.4s ease;
+            z-index: 15;
+            padding: 25px;
+            border-radius: 20px;
+            cursor: default;
+            /* Выравнивание текста по ширине для красоты */
+            text-align: justify;
+            hyphens: auto;
+        }
+
+        .staff-desc:hover {
+            background: rgba(86, 204, 242, 0.05);
+        }
+
+        /* Заголовки оставляем прижатыми к бокам */
+        .staff-desc.left { text-align: right; }
+        .staff-desc.right { text-align: left; }
+
+        .staff-desc h2 {
+            font-family: '8bitoperator_jve', sans-serif;
+            color: #53B8EF;
+            font-size: 42px;
+            margin-bottom: 20px;
+            margin-top: 0;
+            text-align: inherit; /* Берет выравнивание от родителя */
+        }
+
+        .staff-desc p {
+            font-family: 'Gilroy-Medium', sans-serif;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #ccc;
+            margin: 10px 0;
+        }
+
+        .staff-display {
+            position: relative;
+            width: 450px;
+            height: 450px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .staff-img {
+            position: absolute;
+            max-width: 200px;
+            height: auto;
+            opacity: 0.5;
+            filter: grayscale(40%) drop-shadow(0 0 10px rgba(255,255,255,0.05));
+            transition: all 0.6s ease;
+            pointer-events: none;
+        }
+
+        #staff-speed { transform: translateX(-80px) translateY(40px) rotate(270deg); }
+        #staff-power { transform: translateX(110px) translateY(-30px) rotate(95deg); }
+
+        .staff-img.active {
+            opacity: 1;
+            z-index: 10;
+            animation: floatUpOnly 3s ease-in-out infinite;
+        }
+
+        #staff-speed.active {
+            filter: grayscale(0%) drop-shadow(0 0 50px rgba(86, 204, 242, 1));
+        }
+
+        #staff-power.active {
+            filter: grayscale(0%) drop-shadow(0 0 50px rgba(244, 249, 149, 1));
+        }
+
+        @keyframes floatUpOnly {
+            0%, 100% { margin-top: 0px; }
+            50% { margin-top: -30px; }
+        }
+
+        .highlight-blue { color: #56CCF2; font-weight: bold; }
+        .highlight-purple { color: #BB6BD9; font-weight: bold; }
+        .highlight-yellow { color: #F4F995; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">MIROJAV</div>
+        <nav>
+            <a href="index.html">home</a>
+            <a href="about.html" class="active">about mod</a>
+            <a href="gallery.html">gallery</a>
+            <a href="conntact.html">contact</a>
+        </nav>
+    </header>
+
+    <div class="about-container">
+        <div class="staff-desc left" onmouseover="activate('speed')" onmouseout="deactivate()">
+            <h2>Magic Speed Wand</h2>
+            <p>"A relic from the frozen peaks, light as a feather and fast as lightning."</p>
+            <p><span class="highlight-yellow">Celestial Mist:</span> Right-click to summon blue energy particles.</p>
+            <p><span class="highlight-purple">Fleet Foot:</span> Grants Speed II for 15 seconds.</p>
+        </div>
+
+        <div class="staff-display">
+            <img id="staff-speed" class="staff-img" src="assets/Speed.png" alt="Speed Staff">
+            <img id="staff-power" class="staff-img" src="assets/Power.png" alt="Power Staff">
+        </div>
+
+        <div class="staff-desc right" onmouseover="activate('power')" onmouseout="deactivate()">
+            <h2>Magic Power Wand</h2>
+            <p>"Forged in the heart of the Nether, this staff pulses with unstoppable heat."</p>
+            <p><span class="highlight-yellow">Inferno Aura:</span> Right-click to ignite the air around you.</p>
+            <p><span class="highlight-purple">Titan's Might:</span> Grants Strength II for 15 seconds.</p>
+        </div>
+    </div>
+
+    <script>
+        function activate(type) {
+            deactivate();
+            const el = document.getElementById('staff-' + type);
+            if (el) el.classList.add('active');
+        }
+
+        function deactivate() {
+            document.querySelectorAll('.staff-img').forEach(img => {
+                img.classList.remove('active');
+            });
+        }
+    </script>
+
+</body>
+</html>
